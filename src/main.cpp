@@ -1,12 +1,13 @@
 ﻿
 
 #include <SFML/Graphics.hpp>
-
+#include <vector>
+#include <string>
 
 int main()
 {
 	auto square = sf::RectangleShape(sf::Vector2f(50,50));
-	auto window = sf::RenderWindow (sf::VideoMode(500, 500), "Hello There");
+	auto window = sf::RenderWindow (sf::VideoMode(700, 700), "Hello There");
 
 	square.setFillColor(sf::Color::Red);
 
