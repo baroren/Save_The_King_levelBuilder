@@ -5,19 +5,19 @@
 
 int main()
 {
-	auto circle = sf::CircleShape (100);
+	auto square = sf::RectangleShape(sf::Vector2f(50,50));
 	auto window = sf::RenderWindow (sf::VideoMode(500, 500), "Hello There");
 
-	circle.setFillColor(sf::Color::Red);
+	square.setFillColor(sf::Color::Red);
 
-	circle.setOrigin(circle.getRadius(), circle.getRadius());
+	//square.setOrigin(square.getSize());
 
-	circle.setPosition(window.getSize().x / 2, window.getSize().y / 2);
+	//square.setPosition(window.getSize().x / 2, window.getSize().y / 2);
 
 	while (window.isOpen())
 	{
 		window.clear();
-		window.draw(circle);
+		window.draw(square);
 		window.display();
 	}
 }
