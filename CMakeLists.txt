@@ -17,12 +17,13 @@ if (MSVC)
     add_compile_options (/W4 /permissive- /Zc:externConstexpr /Zc:inline)
 endif ()
 
-add_executable (${CMAKE_PROJECT_NAME} "src/main.cpp" "src/King.cpp" "src/Thief.cpp" "src/Mage.cpp" "src/Teleport.cpp" "src/Fire.cpp" "src/Wall.cpp" "src/Warrior.cpp" "include/Fire.h" "include/King.h" "src/Board.cpp" "include/Board.h" "src/GameObject.cpp" "include/GameObject.h")
+add_executable (${CMAKE_PROJECT_NAME} "src/main.cpp" "src/King.cpp" "src/Thief.cpp" "src/Mage.cpp" "src/Teleport.cpp" "src/Fire.cpp" "src/Wall.cpp" "src/Warrior.cpp" "include/Fire.h" "include/King.h" "src/Board.cpp" "include/Board.h" "src/DisplayObject.cpp" "include/DisplayObject.h" "src/Menu.cpp" "include/Menu.h")
 
 target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE $<$<CONFIG:DEBUG>:-fsanitize=address>)
 
 add_subdirectory (include)
 add_subdirectory (src)
+add_subdirectory (images)
 
 set (SFML_STATIC_LIBRARIES TRUE)
 set (SFML_DIR "C:/SFML/SFML-2.5.1/lib/cmake/SFML")
