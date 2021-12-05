@@ -23,7 +23,7 @@ target_compile_options(${CMAKE_PROJECT_NAME} PRIVATE $<$<CONFIG:DEBUG>:-fsanitiz
 
 add_subdirectory (include)
 add_subdirectory (src)
-add_subdirectory (images)
+add_subdirectory (resources)
 
 set (SFML_STATIC_LIBRARIES TRUE)
 set (SFML_DIR "C:/SFML/SFML-2.5.1/lib/cmake/SFML")
