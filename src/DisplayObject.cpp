@@ -25,3 +25,5 @@ sf::Vector2i DisplayObject::getLocation() const
 {
 	return m_location;
 }
+
+void DisplayObject::draw() {}

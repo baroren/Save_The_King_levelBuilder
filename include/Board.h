@@ -4,15 +4,16 @@
 class Board {
 public:
 
-//		c-tor based on window size (x width ,y height, menu size)
+//		c-tor based on window size (number of rows (height) ,number of cols (width))
 	Board(const int, const int);	
+	Board() = delete;
 
 //		print base board (blank squares)
-	void printBoard();		
+	void print(sf::RenderWindow& window) const;
 
 
 private:
-	sf::Vector2i m_location;		//	upper-left dot of board
-	const int m_menuMargin = 25;
+	sf::Vector2i m_location;		//	upper-left dot of board (is constant)
+	int m_rowNum, m_colNum;			//	number of rows and cols
 
 };

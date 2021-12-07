@@ -34,10 +34,10 @@ void Menu::print(sf::RenderWindow& window)
 		imageSizeY = button.getSize().y;
 
 		auto buttonDisplay = sf::Sprite(button);				
-
+		
 //			change size of sprite to BUTTON_SIZE
 		buttonDisplay.setScale(1.f/(imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
-
+		
 		buttonDisplay.setPosition(sf::Vector2f(m_buttons[i].getLocation()));	//change position of sprite
 		window.draw(buttonDisplay);
 	}
