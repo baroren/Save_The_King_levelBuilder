@@ -37,7 +37,6 @@ int main()
 
 	Menu menu;
 	Board board(rows_num, cols_num);
-
 	while (window.isOpen())
 	{
 		window.clear();
@@ -53,7 +52,10 @@ int main()
 			case sf::Event::Closed:
 				window.close();
 				break;
-
+			case sf::Event::MouseButtonReleased:
+				cout << "clicked";
+				break;
+			
 			}
 		}
 	}
