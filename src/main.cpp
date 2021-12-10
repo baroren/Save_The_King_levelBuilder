@@ -6,7 +6,7 @@
 #include "Menu.h"
 #include <iostream>
 #include "Board.h"
-
+#pragma once
 using std::vector;
 using std::string;
 using std::cin;
@@ -57,7 +57,7 @@ int main()
 			case sf::Event::MouseButtonReleased:
 				if (position.y < 70 && position.y>0)
 				{
-					menu.checkIfCliked(window, true);
+					menu.checkIfCliked(window, board);
 				}
 				cout << "clicked"<<position.y<<std::endl;
 				break;

@@ -1,5 +1,5 @@
 #include <SFML/Graphics.hpp>
-
+#pragma once
 
 class Board {
 public:
@@ -10,7 +10,7 @@ public:
 
 //		print base board (blank squares)
 	void print(sf::RenderWindow& window) const;
-
+	
 
 private:
 	sf::Vector2i m_location;		//	upper-left dot of board (is constant)
