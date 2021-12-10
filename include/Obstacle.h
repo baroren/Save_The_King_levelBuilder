@@ -4,10 +4,9 @@
 #pragma once
 using std::string;
 //class DisplayObject;
-
-class King : public DisplayObject
+class Obstacle : public DisplayObject
 {
 public:
-	using DisplayObject :: DisplayObject;
-	
+	using DisplayObject::DisplayObject;
+
 };

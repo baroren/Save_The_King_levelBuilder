@@ -1,5 +1,6 @@
 #include <string>
 #include <SFML/Graphics.hpp>
+#pragma once
 
 using std::string;
 
@@ -10,10 +11,10 @@ public:
 
 //		c-tor with x, y values and path to image
 	DisplayObject(const int = 0, const int = 0, const string = "");
-
+	void isClicked();
 	void setCoord(const int, const int);
-	void setImagePath(const string);
-
+	void setTextureAndPlayer(const string);
+	sf::Texture& getTexture();
 //		draws itself on window according to location
 	void draw();
 
@@ -23,4 +24,5 @@ public:
 private:
 	sf::Vector2i m_location;	//location of object
 	string m_imagePath;			//path to image
+	sf::Texture m_texture;
 };
