@@ -56,12 +56,13 @@ void Menu::checkIfCliked(sf::RenderWindow& window, bool pressed)
 
 				auto buttonDisplay = sf::Sprite(m_Objects.getObject(i)->getTexture());
 				buttonDisplay.setScale(1.f / (imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
-
+				buttonDisplay.setColor(sf::Color(255, 255, 255, 128));
 				//m_Objects.getObject(i)->isClicked();
 				//while (pressed) 
 				//{
 				while (pressed)
 				{
+
 					buttonDisplay.setPosition(sf::Mouse::getPosition(window).x, sf::Mouse::getPosition(window).y);
 					cout << "in check if Clicked " << i << std::endl;
 					window.draw(buttonDisplay);
