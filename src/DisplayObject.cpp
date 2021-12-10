@@ -1,7 +1,6 @@
 #include "DisplayObject.h"
 #include "Board.h"
 
-
 DisplayObject::DisplayObject(const int x, const int y, const string imagePath)
 	 {
 	this->setCoord(x, y);
@@ -36,3 +35,8 @@ sf::Texture& DisplayObject::getTexture()
 
 
 void DisplayObject::draw() {}
+
+void DisplayObject::isClicked()
+{
+	
+}

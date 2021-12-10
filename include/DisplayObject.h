@@ -11,7 +11,7 @@ public:
 
 //		c-tor with x, y values and path to image
 	DisplayObject(const int = 0, const int = 0, const string = "");
-
+	void isClicked();
 	void setCoord(const int, const int);
 	void setTextureAndPlayer(const string);
 	sf::Texture& getTexture();

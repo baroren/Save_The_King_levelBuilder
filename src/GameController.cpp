@@ -14,7 +14,7 @@ GameController::GameController() :m_objects()
 	m_objects[7] = new Obstacle(BUTTON_SIZE * 7, 0, m_imagesPath[7]);
 	m_objects[8] = new Obstacle(BUTTON_SIZE * 8, 0, m_imagesPath[8]);
 	m_objects[9] = new Obstacle(BUTTON_SIZE * 9, 0, m_imagesPath[9]);
-	m_objects[10] = new Obstacle(BUTTON_SIZE * 9, 0, m_imagesPath[10]);
+	m_objects[10] = new Obstacle(BUTTON_SIZE * 10, 0, m_imagesPath[10]);
 
 }
 

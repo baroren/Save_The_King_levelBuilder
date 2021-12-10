@@ -14,7 +14,7 @@ public:
 
 	Menu();
 	void print(sf::RenderWindow& window);
-	void check_if_clicked(sf::RenderWindow& window);
+	void checkIfCliked(sf::RenderWindow& window,bool);
 
 private:
 //		array of all display objects of the menu
