@@ -43,6 +43,11 @@ void Menu::checkIfCliked(sf::RenderWindow& window, Board board)
 {
 	
 	sf::Vector2i position = sf::Mouse::getPosition(window);
+	//while (pressed)
+	//{
+	//	if (sf::Event::MouseButtonReleased)
+	//		pressed = false;
+	
 		for (int i = 0;i < 11;i++)
 		{
 			if (position.x > BUTTON_SIZE * i && position.x < BUTTON_SIZE * (i + 1) )
@@ -53,7 +58,9 @@ void Menu::checkIfCliked(sf::RenderWindow& window, Board board)
 				auto buttonDisplay = sf::Sprite(m_Objects.getObject(i)->getTexture());
 				buttonDisplay.setScale(1.f / (imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
 				buttonDisplay.setColor(sf::Color(255, 255, 255, 128));
-				
+				//m_Objects.getObject(i)->isClicked();
+				//while (pressed) 
+				//{
 				while (true)
 				{
 
@@ -69,12 +76,11 @@ void Menu::checkIfCliked(sf::RenderWindow& window, Board board)
 					if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 					{
 						//cout << "clicked yeh oh \n";
-						board.assignToBlock(window,m_Objects[i]);
 						return;
 					}
 					
 				}
-				
+				//}
 			}
 		}
 

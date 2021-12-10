@@ -23,7 +23,6 @@ public:
 
 private:
 	sf::Vector2i m_location;	//location of object
-	sf::Vector2i* m_boardlocatin;
 	string m_imagePath;			//path to image
 	sf::Texture m_texture;
 };
