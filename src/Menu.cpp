@@ -14,6 +14,11 @@ Menu::Menu()
 	
 }
 
+void Menu::setObjects(const vector <DisplayObject*> objects)
+{
+	m_objects = objects;
+}
+
 //	print all menu objects
 void Menu::print(sf::RenderWindow& window)
 {
@@ -24,22 +29,21 @@ void Menu::print(sf::RenderWindow& window)
 	{
 		
 
-		int imageSizeX = m_Objects.getObject(i)->getTexture().getSize().x;			//width and height of image
-		int imageSizeY = m_Objects.getObject(i)->getTexture().getSize().y;
+		//int imageSizeX = m_objects[i]->getTexture().getSize().x;			//width and height of image
+		//int imageSizeY = m_objects[i]->getTexture().getSize().y;
 
-		auto buttonDisplay = sf::Sprite(m_Objects.getObject(i)->getTexture());
-		//			change size of sprite to BUTTON_SIZE
-		buttonDisplay.setScale(1.f / (imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
+		//auto buttonDisplay = sf::Sprite(m_objects[i]->getTexture());
+		////			change size of sprite to BUTTON_SIZE
+		//buttonDisplay.setScale(1.f / (imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
 
-		buttonDisplay.setPosition(sf::Vector2f(m_Objects.getObject(i)->getLocation()));	//change position of sprite
-		window.draw(buttonDisplay);
+		//buttonDisplay.setPosition(sf::Vector2f(m_objects[i]->getLocation()));	//change position of sprite
+		//window.draw(buttonDisplay);
+
+		m_objects[i]->draw(window);
 	}
-		
-
-	
 }
 
-int Menu::checkMenuClick(sf::RenderWindow& window, const Board board, string& objectName)
+int Menu::checkMenuClick(sf::RenderWindow& window, const Board board)
 {
 	
 	sf::Vector2i position = sf::Mouse::getPosition(window);
@@ -49,10 +53,10 @@ int Menu::checkMenuClick(sf::RenderWindow& window, const Board board, string& ob
 	{
 		if (position.x > BUTTON_SIZE * optionIndex && position.x < BUTTON_SIZE * (optionIndex + 1) )
 		{
-			int imageSizeX = m_Objects.getObject(optionIndex)->getTexture().getSize().x;			//width and height of image
-			int imageSizeY = m_Objects.getObject(optionIndex)->getTexture().getSize().y;
+			int imageSizeX = m_objects[optionIndex]->getTexture().getSize().x;			//width and height of image
+			int imageSizeY = m_objects[optionIndex]->getTexture().getSize().y;
 
-			auto buttonDisplay = sf::Sprite(m_Objects.getObject(optionIndex)->getTexture());
+			auto buttonDisplay = sf::Sprite(m_objects[optionIndex]->getTexture());
 			buttonDisplay.setScale(1.f / (imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
 			buttonDisplay.setColor(sf::Color(255, 255, 255, 128));
 				
@@ -77,36 +81,55 @@ int Menu::checkMenuClick(sf::RenderWindow& window, const Board board, string& ob
 
 					if (position.y > BUTTON_SIZE)		//return option index if mouse clicked on board
 					{
-						objectName = indexToString(optionIndex);
 						return optionIndex;
 					}
-						
 				}
 			}
 		}
 	}
 
-	//}
 	cout << position.x;
 }
 
-string Menu::indexToString(const int index)
-{
-	switch (index)
-	{
-	case 0:
-		return "king";
-		break;
-	case 1:
-		return "mage";
-		break;
-	case 2:
-		return "warrior";
-		break;
-	case 3:
-		return "Thief";
-		break;
-	case 4:
-		return "";
-	}
-}
+//string Menu::indexToDisplayObject(const int index)
+//{
+//	switch (index)
+//	{
+//	case 0:
+//		return "king";
+//		break;
+//	case 1:
+//		return "mage";
+//		break;
+//	case 2:
+//		return "warrior";
+//		break;
+//	case 3:
+//		return "Thief";
+//		break;
+//	case 4:
+//		return "";
+//	}
+//}
+
+//DisplayObject& Menu::indexToObject(const int index)
+//{
+//	switch (index)
+//	{
+//	case 0:
+//
+//		return ;
+//		break;
+//	case 1:
+//		return ;
+//		break;
+//	case 2:
+//		return ;
+//		break;
+//	case 3:
+//		return ;
+//		break;
+//	case 4:
+//		return ;
+//	}
+//}
