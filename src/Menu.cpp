@@ -10,7 +10,7 @@ const int BUTTON_SIZE = 70;
 Menu::Menu()
 	//m_buttons()
 {
-
+ 
 	
 }
 

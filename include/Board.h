@@ -21,13 +21,15 @@ public:
 
 	char tagToChar(const int tag);
 
-	void printObject(const int tag, sf::RenderWindow& window) const;
+	void printObject(const int tag, sf::RenderWindow& window, const int row, const int col) const;
+
+	void printByIndex(const int index, const int row, const int col) const;
 
 private:
 	sf::Vector2i m_location;			//	upper-left dot of board (is constant)
 	int m_rowNum, m_colNum;				//	number of rows and cols
 
-	vector<vector<char>> m_btsBoard;			//	representing the objects on board
+	vector<vector<int>> m_btsBoard;			//	representing the objects on board
 
 
 
