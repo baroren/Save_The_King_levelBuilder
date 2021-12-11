@@ -4,10 +4,10 @@
 #pragma once
 using std::string;
 //class DisplayObject;
-class Obstacle : public DisplayObject
+
+class DeletePage : public DisplayObject
 {
 public:
 	using DisplayObject::DisplayObject;
-	bool  isClicked();//allways false 
 
 };

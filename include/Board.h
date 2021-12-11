@@ -17,7 +17,7 @@ public:
 //		print base board (blank squares)
 	void print(sf::RenderWindow& window) const;
 	
-	void updateBoard(sf::RenderWindow& window, DisplayObject& object, const sf::Vector2i position);
+	void updateBoard(sf::RenderWindow& window, DisplayObject& object, const sf::Vector2i position,int);
 
 	char tagToChar(const int tag);
 
@@ -27,7 +27,7 @@ private:
 	sf::Vector2i m_location;			//	upper-left dot of board (is constant)
 	int m_rowNum, m_colNum;				//	number of rows and cols
 
-	vector<vector<int>> m_btsBoard;			//	representing the objects on board
+	vector<string> m_btsBoard;			//	representing the objects on board
 
 
 
