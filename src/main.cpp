@@ -15,6 +15,10 @@ using std::endl;
 
 int main()
 {
+//		thats how the main should look
+	//GameController gameController;
+	//gameController.run();
+
 	auto square = sf::RectangleShape(sf::Vector2f(50,50));
 //		size of window, changes based on button size
 	auto window = sf::RenderWindow (sf::VideoMode(980, 700), "Hello There");
@@ -46,6 +50,7 @@ int main()
 		board.print(window);
 		window.display();
 
+		string objectName;
 
 		if (auto event = sf::Event{}; window.waitEvent(event))
 		{
@@ -57,7 +62,7 @@ int main()
 			case sf::Event::MouseButtonReleased:
 				if (position.y < 70 && position.y>0)
 				{
-					menu.checkIfCliked(window, board);
+					menu.checkMenuClick(window, board, objectName);
 				}
 				cout << "clicked"<<position.y<<std::endl;
 				break;

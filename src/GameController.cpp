@@ -1,4 +1,13 @@
-#include <GameController.h>
+#include <SFML/Graphics.hpp>
+#include "GameController.h"
+#include "Board.h"
+#include "Menu.h"
+#include <iostream>
+
+using std::cout;
+using std::endl;
+using std::cin;
+
 const int BUTTON_SIZE = 70;
 
 GameController::GameController() :m_objects()
@@ -16,9 +25,67 @@ GameController::GameController() :m_objects()
 	m_objects[9] = new Obstacle(BUTTON_SIZE * 9, 0, m_imagesPath[9]);
 	m_objects[10] = new Obstacle(BUTTON_SIZE * 10, 0, m_imagesPath[10]);
 
+
+
 }
 
-DisplayObject*& GameController::getObject(int index) {
+void GameController::run()
+{
+	int rows_num, cols_num;
+	
+
+	cout << "how many rows?" << endl;
+	cin >> rows_num;
+	cout << "how many cols?" << endl;
+	cin >> cols_num;
+
+	auto window = sf::RenderWindow(sf::VideoMode(980, 700), "Hello There");
+	sf::Vector2i position = sf::Mouse::getPosition();
+	Menu menu;
+	Board board(rows_num, cols_num);
+
+	while (window.isOpen())
+	{
+		sf::Vector2i position = sf::Mouse::getPosition(window);
+
+		window.clear();
+		menu.print(window);
+		board.print(window);
+		window.display();
+
+		string objectName;
+		DisplayObject displayObject;
+
+		if (auto event = sf::Event{}; window.waitEvent(event))
+		{
+			switch (event.type)
+			{
+			case sf::Event::Closed:
+				window.close();
+				break;
+			case sf::Event::MouseButtonReleased:
+				if (position.y < 70 && position.y>0)
+				{
+					menu.checkMenuClick(window, board, objectName);
+				}
+
+				else
+				{
+
+				}
+				cout << "clicked" << position.y << std::endl;
+				break;
+
+
+
+
+			}
+		}
+	}
+}
+
+DisplayObject*& GameController::getObject(const int index) {
 
 	return m_objects[index];
 }
+

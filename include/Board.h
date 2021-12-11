@@ -1,5 +1,9 @@
-#include <SFML/Graphics.hpp>
 #pragma once
+
+#include <SFML/Graphics.hpp>
+#include <vector>
+
+using std::vector;
 
 class Board {
 public:
@@ -11,9 +15,10 @@ public:
 //		print base board (blank squares)
 	void print(sf::RenderWindow& window) const;
 	
+	void printObject(sf::RenderWindow& window, const int optionIndex);
 
 private:
-	sf::Vector2i m_location;		//	upper-left dot of board (is constant)
-	int m_rowNum, m_colNum;			//	number of rows and cols
-
+	sf::Vector2i m_location;			//	upper-left dot of board (is constant)
+	int m_rowNum, m_colNum;				//	number of rows and cols
+	vector<vector<char>> m_btsBoard;			//	representing the objects on board
 };
