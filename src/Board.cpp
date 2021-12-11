@@ -1,10 +1,11 @@
 #include "Board.h"
 #include <iostream>
 
+using std::cin;
 using std::cout;
 using std::endl;
 
-int space = 70;
+ int space = 70;
 const int UPPER_LEFT_X = 140;
 const int UPPER_LEFT_Y = 140;
 
@@ -13,7 +14,7 @@ Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objec
 	:m_rowNum(row_num), m_colNum(col_num), m_location(140, 140), m_objects(objects)
 {
 
-    vector <int> row;
+    string row;
 
     for (int i = 0; i < row_num; i++)
     {
@@ -24,6 +25,7 @@ Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objec
 
         m_btsBoard.push_back(row);
     }
+    
 }
 
 void Board::setObjects(const vector <DisplayObject*> objects)
@@ -63,14 +65,21 @@ void Board::print(sf::RenderWindow& window) const
 
         window.draw(col, 2, sf::Lines);
     }
-
-    for (int i = 0; i < 9; i++)
+  
+    for (int i = 0; i < m_rowNum; i++)
     {
-        for (int k = 0; k < m_colNum; k++)
+        for (int j = 0; j < m_colNum; j++)
         {
-            if (m_btsBoard[i][k] != 0)
-                printObject(m_btsBoard[i][k], window, i, k);
+           std:: cout << m_btsBoard[i][j];
+           if (m_btsBoard[i][j] == 'K')
+               m_objects[0]->draw(window,true);
+           if (m_btsBoard[i][j] == 'M')
+               m_objects[1]->draw(window, true);
+                    
         }
+       // if (m_objects[i]->getBoardLocation().y > -1)
+       //     m_objects[i]->draw(window);
+
     }
 }
 
@@ -106,7 +115,7 @@ void Board::printObject(const int tag, sf::RenderWindow& window, const int row, 
 }
 
 
-void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const sf::Vector2i position)
+void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const sf::Vector2i position, int index)
 {
 
 
@@ -115,17 +124,17 @@ void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const s
 //      find col and row of the mouse click, check the diff in the x, y of mouse click with cols of board
     while (position.x - space > UPPER_LEFT_X + space * col_index)
         col_index++;
+  
 
     while (position.y - space > UPPER_LEFT_Y + space * row_index)
         row_index++;
 
     cout << col_index << ' ' << row_index << endl;
 
-//    (*m_objects[object.getTag()]).setBoardPos(col_index, row_index);
-//    (*m_objects[object.getTag()]).setCoord(position.x, position.y);
+    (*m_objects[index]).setBoardPos(col_index, row_index,space);
 
     m_btsBoard[row_index][col_index] = object.getTag();
-
+    
 
 }
 

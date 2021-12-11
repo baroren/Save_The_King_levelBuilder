@@ -16,7 +16,9 @@ public:
 
 	Menu();
 	void print(sf::RenderWindow& window);
-	int checkMenuClick(sf::RenderWindow& window,const Board, sf::Vector2i& position);
+
+	int checkMenuClick(sf::RenderWindow& window,const Board,sf::Vector2i &);
+
 
 	DisplayObject& indexToObject(const int index);
 

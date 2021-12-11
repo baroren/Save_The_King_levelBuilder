@@ -1,10 +1,12 @@
 #include "DisplayObject.h"
 #include "Board.h"
 
+const int space = 70;
+
 //	if changed be sure to adjust the window size accordingly (window size = BUTTON_SIZE * 14)
 const int BUTTON_SIZE = 70;
 
-DisplayObject::DisplayObject(const int x, const int y, const string imagePath, const int tag)
+DisplayObject::DisplayObject(const int x, const int y, const string imagePath, const char tag)
 	:m_boardLocation(-1, -1)
 {
 	setCoord(x, y);
@@ -13,16 +15,16 @@ DisplayObject::DisplayObject(const int x, const int y, const string imagePath, c
 }
 
 
-void DisplayObject::setCoord(const int x, const int y)
+void DisplayObject::setCoord(const int x, const int y )
 {
 	m_location.x = x;
 	m_location.y = y;
 }
 
-void DisplayObject::setBoardPos(const int x, const int y)
+void DisplayObject::setBoardPos(const int x, const int y,int space)
 {
-	m_boardLocation.x = x;
-	m_boardLocation.y = y;
+	m_boardLocation.x = space+BUTTON_SIZE*(x+1);
+	m_boardLocation.y = space+BUTTON_SIZE*(y+1);
 }
 
 void DisplayObject::setTextureAndPlayer(const string imagePath)
@@ -50,28 +52,37 @@ sf::Texture& DisplayObject::getTexture()
 	return m_texture;
 }
 
-int DisplayObject::getTag() const
+char DisplayObject::getTag() const
 {
+	
 	return m_tag;
 }
 
 
-void DisplayObject::draw(sf::RenderWindow& window)
+void DisplayObject::draw(sf::RenderWindow& window, bool board)
 {
 	int imageSizeX = getTexture().getSize().x;			//width and height of image
 	int imageSizeY = getTexture().getSize().y;
 
 	auto buttonDisplay = sf::Sprite(getTexture());
 	//			change size of sprite to BUTTON_SIZE
-	buttonDisplay.setScale(1.f / (imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
+	if (board)
+	{
+		buttonDisplay.setScale(1.f / (imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
+		buttonDisplay.setPosition(sf::Vector2f(getBoardLocation()));	//change position of sprite
 
-	buttonDisplay.setPosition(sf::Vector2f(getLocation()));	//change position of sprite
+	}
+	else
+	{
+		buttonDisplay.setScale(1.f / (imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
+		buttonDisplay.setPosition(sf::Vector2f(getLocation()));	//change position of sprite
+	}
 	window.draw(buttonDisplay);
 	//buttonDisplay.setPosition(140 + 70 * getBoardLocation().x, 140 + 70 * getBoardLocation().y);	//change position of sprite
 	//window.draw(buttonDisplay);
 }
 
-void DisplayObject::isClicked()
+bool &DisplayObject::isClicked()
 {
-	
+	return m_isOnBoard;
 }

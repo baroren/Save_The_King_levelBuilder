@@ -39,19 +39,18 @@ void Menu::print(sf::RenderWindow& window)
 		//buttonDisplay.setPosition(sf::Vector2f(m_objects[i]->getLocation()));	//change position of sprite
 		//window.draw(buttonDisplay);
 
-		m_objects[i]->draw(window);
+		m_objects[i]->draw(window,false);
 	}
 }
 
 int Menu::checkMenuClick(sf::RenderWindow& window, const Board board, sf::Vector2i& position)
 {
-	
 	//sf::Vector2i position = sf::Mouse::getPosition(window);
 	int optionIndex;
 
 	for (optionIndex = 0; optionIndex < 11; optionIndex++)
 	{
-		if (position.x > BUTTON_SIZE * optionIndex && position.x < BUTTON_SIZE * (optionIndex + 1) )
+		if (position.x > BUTTON_SIZE * optionIndex && position.x < BUTTON_SIZE * (optionIndex + 1))
 		{
 			int imageSizeX = m_objects[optionIndex]->getTexture().getSize().x;			//width and height of image
 			int imageSizeY = m_objects[optionIndex]->getTexture().getSize().y;
@@ -59,18 +58,18 @@ int Menu::checkMenuClick(sf::RenderWindow& window, const Board board, sf::Vector
 			auto buttonDisplay = sf::Sprite(m_objects[optionIndex]->getTexture());
 			buttonDisplay.setScale(1.f / (imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
 			buttonDisplay.setColor(sf::Color(255, 255, 255, 128));
-				
+
 			while (true)
 			{
 
-				buttonDisplay.setPosition(sf::Mouse::getPosition(window).x-BUTTON_SIZE
-					/2, sf::Mouse::getPosition(window).y-BUTTON_SIZE/2);
+				buttonDisplay.setPosition(sf::Mouse::getPosition(window).x - BUTTON_SIZE
+					/ 2, sf::Mouse::getPosition(window).y - BUTTON_SIZE / 2);
 				//cout << "in check if Clicked " << i << std::endl;
 				window.draw(buttonDisplay);
 				this->print(window);
 				board.print(window);
 				window.display();
-					
+
 				window.clear();
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 				{
