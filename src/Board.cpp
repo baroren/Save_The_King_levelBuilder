@@ -1,5 +1,6 @@
 #include "Board.h"
 #include <iostream>
+
 using std::cin;
 using std::cout;
 using std::endl;
@@ -78,10 +79,40 @@ void Board::print(sf::RenderWindow& window) const
         }
        // if (m_objects[i]->getBoardLocation().y > -1)
        //     m_objects[i]->draw(window);
+
     }
-        
 }
 
+//void Board::printByIndex(const int index, const int row, const int col) const
+//{
+//    switch (index)
+//    {
+//    case 0:
+//        return 'k';
+//
+//    default:
+//        break;
+//    }
+//}
+
+
+void Board::printObject(const int tag, sf::RenderWindow& window, const int row, const int col) const
+{
+    int imageSizeX = m_objects[tag]->getTexture().getSize().x;			//width and height of image
+    int imageSizeY = m_objects[tag]->getTexture().getSize().y;
+
+    auto buttonDisplay = sf::Sprite(m_objects[tag]->getTexture());
+    //			change size of sprite to BUTTON_SIZE
+    buttonDisplay.setScale(1.f / (imageSizeX / space), 1.f / (imageSizeY / space));
+
+    buttonDisplay.setPosition(140 + 70 * col, 140 + 70 * row);
+
+    window.draw(buttonDisplay);
+
+    buttonDisplay.setPosition(m_objects[tag]->getLocation().x, m_objects[tag]->getLocation().y);
+
+    window.draw(buttonDisplay);
+}
 
 
 void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const sf::Vector2i position, int index)
@@ -98,7 +129,7 @@ void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const s
     while (position.y - space > UPPER_LEFT_Y + space * row_index)
         row_index++;
 
-  
+    cout << col_index << ' ' << row_index << endl;
 
     (*m_objects[index]).setBoardPos(col_index, row_index,space);
 
@@ -107,26 +138,5 @@ void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const s
 
 }
 
-char Board::tagToChar(const int tag)
-{
-    switch (tag)
-    {
-    case 0:
-        return 'k';
-
-    default:
-        break;
-    }
-}
-
-void Board::printObject(const int tag, sf::RenderWindow& window) const
-{
-    int imageSizeX = m_objects[tag]->getTexture().getSize().x;			//width and height of image
-    int imageSizeY = m_objects[tag]->getTexture().getSize().y;
-
-    auto buttonDisplay = sf::Sprite(m_objects[tag]->getTexture());
-    //			change size of sprite to BUTTON_SIZE
-    buttonDisplay.setScale(1.f / (imageSizeX / space), 1.f / (imageSizeY / space));
 
 
-}

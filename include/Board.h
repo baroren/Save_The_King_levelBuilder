@@ -21,7 +21,9 @@ public:
 
 	char tagToChar(const int tag);
 
-	void printObject(const int tag, sf::RenderWindow& window) const;
+	void printObject(const int tag, sf::RenderWindow& window, const int row, const int col) const;
+
+	void printByIndex(const int index, const int row, const int col) const;
 
 private:
 	sf::Vector2i m_location;			//	upper-left dot of board (is constant)

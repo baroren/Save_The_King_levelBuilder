@@ -54,9 +54,11 @@ void GameController::run()
 			case sf::Event::Closed:
 				window.close();
 				break;
+
 			case sf::Event::MouseButtonReleased:
 				if (position.y < 70 && position.y>0)
 				{
+
 					optionIndex = m_menu.checkMenuClick(window, m_board,position);
 				}
 
@@ -66,7 +68,10 @@ void GameController::run()
 					cout << "after update board";
 				}
 
-				cout << "clicked" << position.y << std::endl;
+				cout << "optionIndex: " << optionIndex << endl;
+				cout << "position.x: " << position.x << std::endl;
+				cout << "position.y: " << position.y << std::endl;
+				cout << '\n';
 				break;
 
 			}

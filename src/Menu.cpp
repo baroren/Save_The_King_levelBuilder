@@ -10,7 +10,7 @@ const int BUTTON_SIZE = 70;
 Menu::Menu()
 	//m_buttons()
 {
-
+ 
 	
 }
 
@@ -45,7 +45,6 @@ void Menu::print(sf::RenderWindow& window)
 
 int Menu::checkMenuClick(sf::RenderWindow& window, const Board board, sf::Vector2i& position)
 {
-
 	//sf::Vector2i position = sf::Mouse::getPosition(window);
 	int optionIndex;
 

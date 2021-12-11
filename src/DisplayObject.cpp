@@ -78,6 +78,8 @@ void DisplayObject::draw(sf::RenderWindow& window, bool board)
 		buttonDisplay.setPosition(sf::Vector2f(getLocation()));	//change position of sprite
 	}
 	window.draw(buttonDisplay);
+	//buttonDisplay.setPosition(140 + 70 * getBoardLocation().x, 140 + 70 * getBoardLocation().y);	//change position of sprite
+	//window.draw(buttonDisplay);
 }
 
 bool &DisplayObject::isClicked()
