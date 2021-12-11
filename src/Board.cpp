@@ -1,4 +1,8 @@
 #include "Board.h"
+#include <iostream>
+
+using std::cout;
+using std::endl;
 
 int space = 70;
 const int UPPER_LEFT_X = 140;
@@ -9,14 +13,14 @@ Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objec
 	:m_rowNum(row_num), m_colNum(col_num), m_location(140, 140), m_objects(objects)
 {
 
-    vector <int> row;
+    vector <char> row;
 
     for (int i = 0; i < row_num; i++)
     {
         row.clear();
 
         for (int k = 0; k < col_num; k++)
-            row.push_back(-1);
+            row.push_back(' ');
 
         m_btsBoard.push_back(row);
     }
@@ -83,9 +87,10 @@ void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const s
     while (position.y - space > UPPER_LEFT_Y + space * row_index)
         row_index++;
 
-  
+    cout << col_index << ' ' << row_index << endl;
 
     (*m_objects[object.getTag()]).setBoardPos(col_index, row_index);
+//    (*m_objects[object.getTag()]).setCoord(position.x, position.y);
 
     m_btsBoard[row_index][col_index] = object.getTag();
 
@@ -112,6 +117,4 @@ void Board::printObject(const int tag, sf::RenderWindow& window) const
     auto buttonDisplay = sf::Sprite(m_objects[tag]->getTexture());
     //			change size of sprite to BUTTON_SIZE
     buttonDisplay.setScale(1.f / (imageSizeX / space), 1.f / (imageSizeY / space));
-
-
 }

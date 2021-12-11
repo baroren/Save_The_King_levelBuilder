@@ -43,10 +43,10 @@ void Menu::print(sf::RenderWindow& window)
 	}
 }
 
-int Menu::checkMenuClick(sf::RenderWindow& window, const Board board)
+int Menu::checkMenuClick(sf::RenderWindow& window, const Board board, sf::Vector2i& position)
 {
 	
-	sf::Vector2i position = sf::Mouse::getPosition(window);
+	//sf::Vector2i position = sf::Mouse::getPosition(window);
 	int optionIndex;
 
 	for (optionIndex = 0; optionIndex < 11; optionIndex++)
@@ -77,12 +77,14 @@ int Menu::checkMenuClick(sf::RenderWindow& window, const Board board)
 					//cout << "clicked yeh oh \n";
 					//board.assignToBlock(window,m_Objects[i]);
 
-					position = sf::Mouse::getPosition();
+					position = sf::Mouse::getPosition(window);
 
 					if (position.y > BUTTON_SIZE)		//return option index if mouse clicked on board
 					{
 						return optionIndex;
 					}
+
+					return -1;
 				}
 			}
 		}
