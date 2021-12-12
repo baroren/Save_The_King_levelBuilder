@@ -16,6 +16,7 @@ public:
 	void setCoord(const int, const int);
 	void setTextureAndPlayer(const string);
 	void setBoardPos(const int x, const int y, int space);
+	void setIsOnBoard(const bool appear);
 
 	sf::Texture& getTexture();
 

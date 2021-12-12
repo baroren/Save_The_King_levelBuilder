@@ -5,6 +5,10 @@
 #include <iostream>
 #include "GameController.h"
 
+#include <fstream>
+
+using std::ofstream;
+
 using std::vector;
 using std::string;
 using std::cin;
@@ -14,15 +18,23 @@ using std::endl;
 int main()
 {
 
-	int rows_num = 3, cols_num = 5;
+	//ofstream outputFile;
 
-	//cout << "how many rows?" << endl;
-	//cin >> rows_num;
-	//cout << "how many cols?" << endl;
-	//cin >> cols_num;
+	//outputFile.open("BoardNew");
 
-	GameController gameController(rows_num, cols_num,false);
-	gameController.run();
+	//outputFile << "hello darkness my old friend" << endl;
+
+
+
+
+	bool newDraw = true;
+	while (newDraw)
+	{
+		GameController gameController(0, 0);
+
+		newDraw = gameController.run();
+	}
+
 
 
 }

@@ -32,6 +32,11 @@ void DisplayObject::setTextureAndPlayer(const string imagePath)
 	m_texture.loadFromFile(m_imagePath);
 }
 
+void DisplayObject::setIsOnBoard(const bool appear)
+{
+	m_isOnBoard = appear;
+}
+
 string DisplayObject::getImagePath() const
 {
 	return m_imagePath;

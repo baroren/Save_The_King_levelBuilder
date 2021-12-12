@@ -23,9 +23,9 @@ class GameController
 public:
 
 //		num of rows, cols
-	GameController(const int, const int,bool);
+	GameController(const int, const int);
 	DisplayObject*& getObject(const int index);
-	void run();
+	bool run();
 
 private:
 	vector <DisplayObject*> m_objects;

@@ -9,8 +9,8 @@ using std::cin;
 
 const int BUTTON_SIZE = 70;
 
-GameController::GameController(const int rowNum, const int colNum,bool newLevel)
-	:m_objects(), m_board(rowNum, colNum, m_objects,newLevel), m_menu()
+GameController::GameController(const int rowNum, const int colNum)
+	:m_objects(), m_board(rowNum, colNum, m_objects), m_menu()
 {
 	m_objects.push_back(new King(BUTTON_SIZE * 0, 0, m_imagesPath[0], 'K'));
 	m_objects.push_back(new Mage(BUTTON_SIZE * 1, 0, m_imagesPath[1], 'M'));
@@ -29,9 +29,11 @@ GameController::GameController(const int rowNum, const int colNum,bool newLevel)
 	// need to constract m_board after we have objects
 	m_board.setObjects(m_objects);
 	m_menu.setObjects(m_objects);
+
+	m_board.setObjectsAppear();
 }
 
-void GameController::run()
+bool GameController::run()
 {
 	//		size of window, changes based on button size
 	auto window = sf::RenderWindow(sf::VideoMode(980, 700), "Hello There");
@@ -57,6 +59,7 @@ void GameController::run()
 			{
 			case sf::Event::Closed:
 				window.close();
+				return false;
 				break;
 
 			case sf::Event::MouseButtonReleased:
@@ -67,7 +70,7 @@ void GameController::run()
 				}
 
 				 if (optionIndex != -1 && optionIndex <11)
-				{
+				 {
 					m_board.updateBoard(window, *m_objects[optionIndex], position, optionIndex);
 					
 				 }
@@ -77,7 +80,7 @@ void GameController::run()
 				 }
 				 else if (optionIndex == 12)
 				 {
-					 bool newLevel = false;
+					// bool newLevel = false;
 				/*	 sf::Text text;
 					 text.setString("Hello World");
 					 text.setCharacterSize(72);
@@ -89,21 +92,24 @@ void GameController::run()
 					 cin >> row;
 					 cout << "enter col" << endl;
 					 cin >> col;*/
-					 GameController newLevel(row,col,newLevel=true);
+
+
+//					 GameController newLevel(row,col,newLevel=true);
+
+
+
 					 //run();
+
+					 return true;
 				 }
 				 else if (optionIndex == 13)
 				 {
-					 m_board.outputToFile();
-					 cout << "test";
+					 if (!m_board.validTeleporterNum())
+						 cout << "Number of teleporters should be even" << endl;
+					 else
+						 m_board.outputToFile();
 				 }
-
-				cout << "optionIndex: " << optionIndex << endl;
-				cout << "position.x: " << position.x << std::endl;
-				cout << "position.y: " << position.y << std::endl;
-				cout << '\n';
 				break;
-
 			}
 		}
 	}

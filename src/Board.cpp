@@ -15,7 +15,7 @@ const int UPPER_LEFT_X = 140;
 const int UPPER_LEFT_Y = 140;
 
 
-Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objects,bool newLevel)
+Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objects)
 	:m_rowNum(0), m_colNum(0), m_location(140, 140), m_objects(objects)
 {
 
@@ -27,7 +27,7 @@ Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objec
     string row;
     vector<string> temp;
 
-    if (!inputFile.is_open()||newLevel)
+    if (!inputFile.is_open())
     {
         cout << "how many rows?" << endl;
         cin >> m_rowNum;
@@ -71,14 +71,23 @@ Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objec
             {
                 inputFileColIndex = 1 + 2 * currCol;        //jumps in 2, starting from 1
                 row.push_back(temp[currRow][inputFileColIndex]);
-                int objIndex = tagToInt(temp[currRow][inputFileColIndex]);
-              //  if (objIndex < 4)
-              //  {
-              //      m_objects[objIndex]->isClicked() = true;
-              //  }
+ 
             }
 
             m_btsBoard.push_back(row);
+        }
+    }
+}
+
+void Board::setObjectsAppear()
+{
+    for (int currRow = 0; currRow < m_rowNum; currRow++)
+    {
+        for (int currCol = 0; currCol < m_colNum; currCol++)
+        {
+            int objIndex = tagToInt(m_btsBoard[currRow][currCol]);
+            if (objIndex < 4)
+                m_objects[objIndex]->isClicked() = true;
         }
     }
 }
@@ -88,18 +97,18 @@ void Board::outputToFile() const
     ofstream outputFile;
     string verticalBorder;
 
-    for (int i = 0; i < m_rowNum*2; i++)        //top bottom border
+    for (int i = 0; i < m_rowNum*2+1; i++)        //top bottom border
         verticalBorder.push_back('-');
 
-    outputFile.open("Board.txt");//
+    outputFile.open("NewBoard.txt");//
     if (!outputFile.is_open())
     {
         cout << "error opening file";
         exit(EXIT_FAILURE);
     }
-
+    outputFile << m_rowNum << ' ' << m_colNum << endl;
     outputFile << verticalBorder << endl;
-    cout << verticalBorder << endl;
+//    cout << verticalBorder << endl;
 
     for (int currRow = 0; currRow < m_rowNum; currRow++)
     {
@@ -108,14 +117,14 @@ void Board::outputToFile() const
         for (int currCol = 0; currCol < m_colNum; currCol++)
         {
             outputFile << m_btsBoard[currRow][currCol] << ' ';  //print chars with one space between
-            cout << m_btsBoard[currRow][currCol] << ' ';
+//            cout << m_btsBoard[currRow][currCol] << ' ';
         }
-        outputFile << '|' << endl;   
-        cout << '|' << endl;    //right border
+        outputFile << '|' << endl;
+//        cout << '|' << endl;    //right border
     }
 
     outputFile << verticalBorder << endl;
-    cout << verticalBorder << endl;
+//    cout << verticalBorder << endl;
     outputFile.close();
 }
 
@@ -281,6 +290,19 @@ void Board::deleteObjectFromBoard(sf::RenderWindow& window, DisplayObject& objec
                 m_objects[i]->isClicked() = false;
         }
     }
+}
+
+
+bool Board::validTeleporterNum() const
+{
+    int teleNum = 0;
+
+    for (int i = 0; i < m_rowNum; i++)
+        for (int k = 0; k < m_colNum; k++)
+            if (m_btsBoard[i][k] == 'X')
+                teleNum++;
+
+    return teleNum % 2 == 0;
 }
 
 int Board:: tagToInt(char tag)
