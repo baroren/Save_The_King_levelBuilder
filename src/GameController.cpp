@@ -65,7 +65,7 @@ void GameController::run()
 				 if (optionIndex != -1)
 				{
 					m_board.updateBoard(window, *m_objects[optionIndex], position, optionIndex);
-					cout << "after update board";
+					
 				}
 
 				cout << "optionIndex: " << optionIndex << endl;

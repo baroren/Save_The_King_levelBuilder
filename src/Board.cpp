@@ -72,10 +72,27 @@ void Board::print(sf::RenderWindow& window) const
         {
            std:: cout << m_btsBoard[i][j];
            if (m_btsBoard[i][j] == 'K')
-               m_objects[0]->draw(window,true);
+               m_objects[0]->draw(window,true,j,i);
            if (m_btsBoard[i][j] == 'M')
-               m_objects[1]->draw(window, true);
-                    
+               m_objects[1]->draw(window, true,j,i);
+           if (m_btsBoard[i][j] == 'W')
+               m_objects[2]->draw(window, true, j, i);
+           if (m_btsBoard[i][j] == 'T')
+               m_objects[3]->draw(window, true, j, i);
+           if (m_btsBoard[i][j] == '=')
+               m_objects[4]->draw(window, true, j, i);
+           if (m_btsBoard[i][j] == '#')
+               m_objects[5]->draw(window, true, j, i);
+           if (m_btsBoard[i][j] == '*')
+               m_objects[6]->draw(window, true, j, i);
+           if (m_btsBoard[i][j] == '!')
+               m_objects[7]->draw(window, true, j, i);
+           if (m_btsBoard[i][j] == 'F')
+               m_objects[8]->draw(window, true, j, i);
+           if (m_btsBoard[i][j] == 'X')
+               m_objects[9]->draw(window, true, j, i);
+           if (m_btsBoard[i][j] == '@')
+               m_objects[10]->draw(window, true, j, i);
         }
        // if (m_objects[i]->getBoardLocation().y > -1)
        //     m_objects[i]->draw(window);
@@ -131,9 +148,16 @@ void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const s
 
     cout << col_index << ' ' << row_index << endl;
 
-    (*m_objects[index]).setBoardPos(col_index, row_index,space);
-
-    m_btsBoard[row_index][col_index] = object.getTag();
+   // (*m_objects[index]).setBoardPos(col_index, row_index,space);
+    if (!m_objects[index]->isClicked())
+    {
+        if (m_btsBoard[row_index][col_index] == ' ');
+        {
+            m_btsBoard[row_index][col_index] = object.getTag();
+            if (index < 5)
+                m_objects[index]->isClicked() = true;
+        }
+    }
     
 
 }

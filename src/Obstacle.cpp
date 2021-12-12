@@ -9,7 +9,7 @@ void Obstacle::setBoardCoord(const int x, const int y)
 		m_onBoard = true;
 }
 
-bool DisplayObject::isClicked()
+bool Obstacle::isClicked()
 {
 	return false;
 }
