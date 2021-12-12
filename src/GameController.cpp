@@ -2,6 +2,7 @@
 #include "GameController.h"
 #include <iostream>
 
+
 using std::cout;
 using std::endl;
 using std::cin;
@@ -84,6 +85,12 @@ void GameController::run()
 			}
 		}
 	}
+
+
+
+
+
+
 }
 
 DisplayObject*& GameController::getObject(const int index) {
