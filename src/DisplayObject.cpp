@@ -69,7 +69,7 @@ void DisplayObject::draw(sf::RenderWindow& window, bool board,int x,int y,int sp
 	if (board)
 	{
 		buttonDisplay.setScale(1.f / (imageSizeX / space), 1.f / (imageSizeY / space));
-		buttonDisplay.setPosition(space + BUTTON_SIZE * (x + 1)), space + BUTTON_SIZE * (y + 1));	//change position of sprite
+		buttonDisplay.setPosition(space + BUTTON_SIZE * (x + 1), space + BUTTON_SIZE * (y + 1));	//change position of sprite
 
 	}
 	else
