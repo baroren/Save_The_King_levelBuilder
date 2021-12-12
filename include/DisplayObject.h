@@ -20,7 +20,7 @@ public:
 	sf::Texture& getTexture();
 
 //		draws itself on window according to location
-	void draw(sf::RenderWindow& window,bool,int ,int);
+	void draw(sf::RenderWindow& window,bool,int ,int,int );
 
 	string getImagePath() const;
 	sf::Vector2i getLocation() const;

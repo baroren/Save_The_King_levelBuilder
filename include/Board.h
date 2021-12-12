@@ -19,12 +19,13 @@ public:
 	
 	void updateBoard(sf::RenderWindow& window, DisplayObject& object, const sf::Vector2i position,int);
 
-	char tagToChar(const int tag);
+	//char tagToChar(const int tag);
 
 	void printObject(const int tag, sf::RenderWindow& window, const int row, const int col) const;
 
 	void printByIndex(const int index, const int row, const int col) const;
-
+	void deleteObjectFromBoard(sf::RenderWindow& window, DisplayObject& object, const sf::Vector2i position, int);
+	int tagToInt(char);
 private:
 	sf::Vector2i m_location;			//	upper-left dot of board (is constant)
 	int m_rowNum, m_colNum;				//	number of rows and cols
