@@ -59,7 +59,7 @@ char DisplayObject::getTag() const
 }
 
 
-void DisplayObject::draw(sf::RenderWindow& window, bool board)
+void DisplayObject::draw(sf::RenderWindow& window, bool board,int x,int y)
 {
 	int imageSizeX = getTexture().getSize().x;			//width and height of image
 	int imageSizeY = getTexture().getSize().y;
@@ -69,7 +69,7 @@ void DisplayObject::draw(sf::RenderWindow& window, bool board)
 	if (board)
 	{
 		buttonDisplay.setScale(1.f / (imageSizeX / BUTTON_SIZE), 1.f / (imageSizeY / BUTTON_SIZE));
-		buttonDisplay.setPosition(sf::Vector2f(getBoardLocation()));	//change position of sprite
+		buttonDisplay.setPosition(space + BUTTON_SIZE * (x + 1), space + BUTTON_SIZE * (y + 1));	//change position of sprite
 
 	}
 	else

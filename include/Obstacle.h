@@ -8,6 +8,7 @@ class Obstacle : public DisplayObject
 {
 public:
 	using DisplayObject::DisplayObject;
-	bool  isClicked();//allways false 
-
+	bool  isClicked();//allways false
+private:
+	bool m_isOnBoard = false;
 };

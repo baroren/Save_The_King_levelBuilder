@@ -39,7 +39,7 @@ void Menu::print(sf::RenderWindow& window)
 		//buttonDisplay.setPosition(sf::Vector2f(m_objects[i]->getLocation()));	//change position of sprite
 		//window.draw(buttonDisplay);
 
-		m_objects[i]->draw(window,false);
+		m_objects[i]->draw(window,false,0,0);
 	}
 }
 
