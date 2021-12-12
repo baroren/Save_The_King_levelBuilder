@@ -10,6 +10,9 @@
 #include "Obstacle.h"
 #include "Warrior.h"
 #include "Board.h"
+#include "DeleteButton.h"
+#include "DeletePage.h"
+#include "Save.h"
 
 
 using std::vector;
@@ -33,5 +36,5 @@ private:
 	const vector<string> m_imagesPath = { "king_image.png", "mage_image.png","warrior_image.png",
 										"thief_image.png", "wall_image.png","gate_image.png",
 										"fire_image.png", "ork_image.jpg", "key_image.png",
-										"teleport_image.png", "throne_image.png" };
+										"teleport_image.png", "throne_image.png","delete_butt.png","delete_page.png","save_page.png"};
 };

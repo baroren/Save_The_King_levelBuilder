@@ -5,7 +5,7 @@ using std::cout;
 
 //	if changed be sure to adjust the window size accordingly (window size = BUTTON_SIZE * 14)
 const int BUTTON_SIZE = 70;
-
+const int BUTTONS = 14;
 
 Menu::Menu()
 	//m_buttons()
@@ -25,7 +25,7 @@ void Menu::print(sf::RenderWindow& window)
 //*auto button = sf::Texture();
 
 	
-	for (int i = 0;i <11;i++) 
+	for (int i = 0;i <BUTTONS;i++) 
 	{
 		
 
@@ -39,7 +39,7 @@ void Menu::print(sf::RenderWindow& window)
 		//buttonDisplay.setPosition(sf::Vector2f(m_objects[i]->getLocation()));	//change position of sprite
 		//window.draw(buttonDisplay);
 
-		m_objects[i]->draw(window,false,0,0);
+		m_objects[i]->draw(window,false,0,0,0);
 	}
 }
 
@@ -48,7 +48,7 @@ int Menu::checkMenuClick(sf::RenderWindow& window, const Board board, sf::Vector
 	//sf::Vector2i position = sf::Mouse::getPosition(window);
 	int optionIndex;
 
-	for (optionIndex = 0; optionIndex < 11; optionIndex++)
+	for (optionIndex = 0; optionIndex < BUTTONS; optionIndex++)
 	{
 		if (position.x > BUTTON_SIZE * optionIndex && position.x < BUTTON_SIZE * (optionIndex + 1))
 		{
@@ -61,16 +61,18 @@ int Menu::checkMenuClick(sf::RenderWindow& window, const Board board, sf::Vector
 
 			while (true)
 			{
+				if (optionIndex < 12)
+				{
+					buttonDisplay.setPosition(sf::Mouse::getPosition(window).x - BUTTON_SIZE
+						/ 2, sf::Mouse::getPosition(window).y - BUTTON_SIZE / 2);
+					//cout << "in check if Clicked " << i << std::endl;
+					window.draw(buttonDisplay);
+					this->print(window);
+					board.print(window);
+					window.display();
 
-				buttonDisplay.setPosition(sf::Mouse::getPosition(window).x - BUTTON_SIZE
-					/ 2, sf::Mouse::getPosition(window).y - BUTTON_SIZE / 2);
-				//cout << "in check if Clicked " << i << std::endl;
-				window.draw(buttonDisplay);
-				this->print(window);
-				board.print(window);
-				window.display();
-
-				window.clear();
+					window.clear();
+				}
 				if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 				{
 					//cout << "clicked yeh oh \n";

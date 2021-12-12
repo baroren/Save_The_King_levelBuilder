@@ -38,7 +38,6 @@ Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objec
         for (int i = 0; i < m_rowNum; i++)
         {
             row.clear();
-
             for (int k = 0; k < m_colNum; k++)
                 row.push_back(' ');
 
@@ -145,29 +144,28 @@ void Board::print(sf::RenderWindow& window) const
     {
         for (int j = 0; j < m_colNum; j++)
         {
-           std:: cout << m_btsBoard[i][j];
            if (m_btsBoard[i][j] == 'K')
-               m_objects[0]->draw(window,true,j,i);
+               m_objects[0]->draw(window,true,j,i,space);
            if (m_btsBoard[i][j] == 'M')
-               m_objects[1]->draw(window, true,j,i);
+               m_objects[1]->draw(window, true,j,i, space);
            if (m_btsBoard[i][j] == 'W')
-               m_objects[2]->draw(window, true, j, i);
+               m_objects[2]->draw(window, true, j, i, space);
            if (m_btsBoard[i][j] == 'T')
-               m_objects[3]->draw(window, true, j, i);
+               m_objects[3]->draw(window, true, j, i, space);
            if (m_btsBoard[i][j] == '=')
-               m_objects[4]->draw(window, true, j, i);
+               m_objects[4]->draw(window, true, j, i, space);
            if (m_btsBoard[i][j] == '#')
-               m_objects[5]->draw(window, true, j, i);
+               m_objects[5]->draw(window, true, j, i, space);
            if (m_btsBoard[i][j] == '*')
-               m_objects[6]->draw(window, true, j, i);
+               m_objects[6]->draw(window, true, j, i, space);
            if (m_btsBoard[i][j] == '!')
-               m_objects[7]->draw(window, true, j, i);
+               m_objects[7]->draw(window, true, j, i, space);
            if (m_btsBoard[i][j] == 'F')
-               m_objects[8]->draw(window, true, j, i);
+               m_objects[8]->draw(window, true, j, i, space);
            if (m_btsBoard[i][j] == 'X')
-               m_objects[9]->draw(window, true, j, i);
+               m_objects[9]->draw(window, true, j, i, space);
            if (m_btsBoard[i][j] == '@')
-               m_objects[10]->draw(window, true, j, i);
+               m_objects[10]->draw(window, true, j, i,space);
         }
        // if (m_objects[i]->getBoardLocation().y > -1)
        //     m_objects[i]->draw(window);
@@ -211,7 +209,7 @@ void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const s
 {
 
 
-    int col_index = 0, row_index = 0;
+    int col_index = -1, row_index = -1;
 
 //      find col and row of the mouse click, check the diff in the x, y of mouse click with cols of board
     while (position.x - space > UPPER_LEFT_X + space * col_index)
@@ -221,15 +219,16 @@ void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const s
     while (position.y - space > UPPER_LEFT_Y + space * row_index)
         row_index++;
 
-    cout << col_index << ' ' << row_index << endl;
+   // cout << col_index << ' ' << row_index << endl;
 
-   // (*m_objects[index]).setBoardPos(col_index, row_index,space);
+if(row_index<m_rowNum && col_index<m_colNum && row_index>=0 && col_index>=0)
     if (!m_objects[index]->isClicked())
     {
-        if (m_btsBoard[row_index][col_index] == ' ');
+        
+        if (m_btsBoard[row_index][col_index] == ' ')
         {
             m_btsBoard[row_index][col_index] = object.getTag();
-            if (index < 5)
+            if (index < 4)
                 m_objects[index]->isClicked() = true;
         }
     }
@@ -237,5 +236,46 @@ void Board::updateBoard(sf::RenderWindow& window, DisplayObject& object, const s
 
 }
 
+void Board::deleteObjectFromBoard(sf::RenderWindow& window, DisplayObject& object, const sf::Vector2i position, int index)
+{
+    int col_index = -1, row_index = -1;
+
+    //      find col and row of the mouse click, check the diff in the x, y of mouse click with cols of board
+    while (position.x - space > UPPER_LEFT_X + space * col_index)
+        col_index++;
 
 
+    while (position.y - space > UPPER_LEFT_Y + space * row_index)
+        row_index++;
+
+    if (row_index < m_rowNum && col_index < m_colNum && row_index >= 0 && col_index >= 0)
+    { 
+       
+        if (m_btsBoard[row_index][col_index] != ' ')
+        {
+            int i = tagToInt(m_btsBoard[row_index][col_index]);
+            m_btsBoard[row_index][col_index] = ' ';
+            if (i < 4)
+                m_objects[i]->isClicked() = false;
+        }
+    }
+}
+
+int Board:: tagToInt(char tag)
+{
+    switch (tag)
+    {
+    case 'K':
+        return 0;
+    case 'M':
+        return 1;
+    case 'W':
+        return 2;
+    case 'T':
+        return 3;
+
+    default:
+        return 5;
+        break;
+    }
+}
