@@ -15,19 +15,19 @@ const int UPPER_LEFT_X = 140;
 const int UPPER_LEFT_Y = 140;
 
 
-Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objects)
+Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objects,bool newLevel)
 	:m_rowNum(0), m_colNum(0), m_location(140, 140), m_objects(objects)
 {
 
     ifstream inputFile;
 
-    inputFile.open("Board1.txt", ios::in);
+    inputFile.open("Board.txt", ios::in);
     bool b = inputFile.is_open();
 
     string row;
     vector<string> temp;
 
-    if (!inputFile.is_open())
+    if (!inputFile.is_open()||newLevel)
     {
         cout << "how many rows?" << endl;
         cin >> m_rowNum;
@@ -71,9 +71,11 @@ Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objec
             {
                 inputFileColIndex = 1 + 2 * currCol;        //jumps in 2, starting from 1
                 row.push_back(temp[currRow][inputFileColIndex]);
-                int objIndex = temp[currRow][inputFileColIndex];
-                    if(objIndex <4)
-                        m_objects[objIndex]->isClicked() = true;
+                int objIndex = tagToInt(temp[currRow][inputFileColIndex]);
+              //  if (objIndex < 4)
+              //  {
+              //      m_objects[objIndex]->isClicked() = true;
+              //  }
             }
 
             m_btsBoard.push_back(row);
@@ -86,24 +88,35 @@ void Board::outputToFile() const
     ofstream outputFile;
     string verticalBorder;
 
-    for (int i = 0; i < 11; i++)        //top bottom border
+    for (int i = 0; i < m_rowNum*2; i++)        //top bottom border
         verticalBorder.push_back('-');
 
-    outputFile.open("BoardNew.txt");//
+    outputFile.open("Board.txt");//
+    if (!outputFile.is_open())
+    {
+        cout << "error opening file";
+        exit(EXIT_FAILURE);
+    }
 
     outputFile << verticalBorder << endl;
+    cout << verticalBorder << endl;
 
     for (int currRow = 0; currRow < m_rowNum; currRow++)
     {
         outputFile << '|';                                  //left border
 
         for (int currCol = 0; currCol < m_colNum; currCol++)
+        {
             outputFile << m_btsBoard[currRow][currCol] << ' ';  //print chars with one space between
-
-        outputFile << '|' << endl;                          //right border
+            cout << m_btsBoard[currRow][currCol] << ' ';
+        }
+        outputFile << '|' << endl;   
+        cout << '|' << endl;    //right border
     }
 
     outputFile << verticalBorder << endl;
+    cout << verticalBorder << endl;
+    outputFile.close();
 }
 
 vector<string> Board::getBtsBoard() const

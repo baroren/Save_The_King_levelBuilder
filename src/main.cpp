@@ -21,7 +21,7 @@ int main()
 	//cout << "how many cols?" << endl;
 	//cin >> cols_num;
 
-	GameController gameController(rows_num, cols_num);
+	GameController gameController(rows_num, cols_num,false);
 	gameController.run();
 
 

@@ -23,7 +23,7 @@ class GameController
 public:
 
 //		num of rows, cols
-	GameController(const int, const int);
+	GameController(const int, const int,bool);
 	DisplayObject*& getObject(const int index);
 	void run();
 

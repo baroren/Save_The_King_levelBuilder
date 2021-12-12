@@ -10,7 +10,7 @@ class Board {
 public:
 
 //		c-tor based on window size (number of rows (height) ,number of cols (width), reference to array of objects)
-	Board(const int, const int, vector <DisplayObject*> m_objects);
+	Board(const int, const int, vector <DisplayObject*> m_objects,bool);
 
 	void setObjects(const vector <DisplayObject*> m_objects);
 

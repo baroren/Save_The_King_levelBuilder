@@ -9,8 +9,8 @@ using std::cin;
 
 const int BUTTON_SIZE = 70;
 
-GameController::GameController(const int rowNum, const int colNum)
-	:m_objects(), m_board(rowNum, colNum, m_objects), m_menu()
+GameController::GameController(const int rowNum, const int colNum,bool newLevel)
+	:m_objects(), m_board(rowNum, colNum, m_objects,newLevel), m_menu()
 {
 	m_objects.push_back(new King(BUTTON_SIZE * 0, 0, m_imagesPath[0], 'K'));
 	m_objects.push_back(new Mage(BUTTON_SIZE * 1, 0, m_imagesPath[1], 'M'));
@@ -26,7 +26,7 @@ GameController::GameController(const int rowNum, const int colNum)
 	m_objects.push_back(new DeleteButton(BUTTON_SIZE * 11, 0, m_imagesPath[11], ' '));
 	m_objects.push_back(new DeletePage(BUTTON_SIZE * 12, 0, m_imagesPath[12], ' '));
 	m_objects.push_back(new Save(BUTTON_SIZE * 13, 0, m_imagesPath[13], ' '));
-
+	// need to constract m_board after we have objects
 	m_board.setObjects(m_objects);
 	m_menu.setObjects(m_objects);
 }
@@ -75,11 +75,28 @@ void GameController::run()
 				 {
 					 m_board.deleteObjectFromBoard(window, *m_objects[optionIndex], position, optionIndex);
 				 }
+				 else if (optionIndex == 12)
+				 {
+					 bool newLevel = false;
+				/*	 sf::Text text;
+					 text.setString("Hello World");
+					 text.setCharacterSize(72);
+					// text.setFont(font);
+					 text.setFillColor(sf::Color::Red);
+					 window.draw(text);
+					 int row, col;
+					 cout << "enter row"<<endl;
+					 cin >> row;
+					 cout << "enter col" << endl;
+					 cin >> col;*/
+					 GameController newLevel(row,col,newLevel=true);
+					 //run();
+				 }
 				 else if (optionIndex == 13)
 				 {
 					 m_board.outputToFile();
 					 cout << "test";
-				}
+				 }
 
 				cout << "optionIndex: " << optionIndex << endl;
 				cout << "position.x: " << position.x << std::endl;
