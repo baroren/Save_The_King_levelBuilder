@@ -74,6 +74,11 @@ void GameController::run()
 				 else if (optionIndex==11)
 				 {
 					 m_board.deleteObjectFromBoard(window, *m_objects[optionIndex], position, optionIndex);
+				 }
+				 else if (optionIndex == 13)
+				 {
+					 m_board.outputToFile();
+					 cout << "test";
 				}
 
 				cout << "optionIndex: " << optionIndex << endl;

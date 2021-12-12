@@ -71,6 +71,9 @@ Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objec
             {
                 inputFileColIndex = 1 + 2 * currCol;        //jumps in 2, starting from 1
                 row.push_back(temp[currRow][inputFileColIndex]);
+                int objIndex = temp[currRow][inputFileColIndex];
+                    if(objIndex <4)
+                        m_objects[objIndex]->isClicked() = true;
             }
 
             m_btsBoard.push_back(row);
@@ -86,7 +89,7 @@ void Board::outputToFile() const
     for (int i = 0; i < 11; i++)        //top bottom border
         verticalBorder.push_back('-');
 
-    outputFile.open("Board.txt");
+    outputFile.open("BoardNew.txt");//
 
     outputFile << verticalBorder << endl;
 

@@ -1,7 +1,6 @@
 #include "DisplayObject.h"
 #include "Board.h"
 
-const int space = 70;
 
 //	if changed be sure to adjust the window size accordingly (window size = BUTTON_SIZE * 14)
 const int BUTTON_SIZE = 70;
@@ -69,7 +68,7 @@ void DisplayObject::draw(sf::RenderWindow& window, bool board,int x,int y,int sp
 	if (board)
 	{
 		buttonDisplay.setScale(1.f / (imageSizeX / space), 1.f / (imageSizeY / space));
-		buttonDisplay.setPosition(space + BUTTON_SIZE * (x + 1), space + BUTTON_SIZE * (y + 1));	//change position of sprite
+		buttonDisplay.setPosition( space * (x )+2*BUTTON_SIZE,  space * (y)+2*BUTTON_SIZE);	//change position of sprite
 
 	}
 	else

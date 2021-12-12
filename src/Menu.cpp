@@ -87,6 +87,8 @@ int Menu::checkMenuClick(sf::RenderWindow& window, const Board board, sf::Vector
 
 					return -1;
 				}
+				if (optionIndex == 13)
+					return optionIndex;
 			}
 		}
 	}
