@@ -13,6 +13,7 @@
 #include "DeleteButton.h"
 #include "DeletePage.h"
 #include "Save.h"
+#include "Throne.h"
 
 
 using std::vector;

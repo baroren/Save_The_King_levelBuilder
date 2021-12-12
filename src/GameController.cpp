@@ -22,7 +22,7 @@ GameController::GameController(const int rowNum, const int colNum)
 	m_objects.push_back(new Obstacle(BUTTON_SIZE * 7, 0, m_imagesPath[7], '!'));
 	m_objects.push_back(new Obstacle(BUTTON_SIZE * 8, 0, m_imagesPath[8], 'F'));
 	m_objects.push_back(new Obstacle(BUTTON_SIZE * 9, 0, m_imagesPath[9], 'X'));
-	m_objects.push_back(new Obstacle(BUTTON_SIZE * 10, 0, m_imagesPath[10], '@'));
+	m_objects.push_back(new Throne(BUTTON_SIZE * 10, 0, m_imagesPath[10], '@'));
 	m_objects.push_back(new DeleteButton(BUTTON_SIZE * 11, 0, m_imagesPath[11], ' '));
 	m_objects.push_back(new DeletePage(BUTTON_SIZE * 12, 0, m_imagesPath[12], ' '));
 	m_objects.push_back(new Save(BUTTON_SIZE * 13, 0, m_imagesPath[13], ' '));

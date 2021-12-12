@@ -86,7 +86,7 @@ void Board::setObjectsAppear()
         for (int currCol = 0; currCol < m_colNum; currCol++)
         {
             int objIndex = tagToInt(m_btsBoard[currRow][currCol]);
-            if (objIndex < 4)
+            if (objIndex < 4 ||objIndex == 10)
                 m_objects[objIndex]->isClicked() = true;
         }
     }
@@ -259,7 +259,7 @@ if(row_index<m_rowNum && col_index<m_colNum && row_index>=0 && col_index>=0)
         if (m_btsBoard[row_index][col_index] == ' ')
         {
             m_btsBoard[row_index][col_index] = object.getTag();
-            if (index < 4)
+            if (index < 4 || index==10)
                 m_objects[index]->isClicked() = true;
         }
     }
@@ -286,7 +286,7 @@ void Board::deleteObjectFromBoard(sf::RenderWindow& window, DisplayObject& objec
         {
             int i = tagToInt(m_btsBoard[row_index][col_index]);
             m_btsBoard[row_index][col_index] = ' ';
-            if (i < 4)
+            if (i < 4 || i==10)
                 m_objects[i]->isClicked() = false;
         }
     }
@@ -317,7 +317,8 @@ int Board:: tagToInt(char tag)
         return 2;
     case 'T':
         return 3;
-
+    case '@':
+        return 10;
     default:
         return 5;
         break;
