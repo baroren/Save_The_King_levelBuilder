@@ -81,20 +81,26 @@ Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objec
 void Board::outputToFile() const
 {
     ofstream outputFile;
+    string verticalBorder;
 
-    if (!outputFile.is_open())
+    for (int i = 0; i < 11; i++)        //top bottom border
+        verticalBorder.push_back('-');
+
+    outputFile.open("Board.txt");
+
+    outputFile << verticalBorder << endl;
+
+    for (int currRow = 0; currRow < m_rowNum; currRow++)
     {
-        string verticalBorder;
-        for (int i = 0; i < 11; i++)
-        {
-            verticalBorder.push_back('-');
-        }
+        outputFile << '|';                                  //left border
 
-        outputFile.open("Board.txt");
+        for (int currCol = 0; currCol < m_colNum; currCol++)
+            outputFile << m_btsBoard[currRow][currCol] << ' ';  //print chars with one space between
 
-        outputFile << (verticalBorder);
-        outputFile << (verticalBorder);
+        outputFile << '|' << endl;                          //right border
     }
+
+    outputFile << verticalBorder << endl;
 }
 
 vector<string> Board::getBtsBoard() const
