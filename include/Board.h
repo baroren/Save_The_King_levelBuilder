@@ -25,6 +25,10 @@ public:
 
 	void printByIndex(const int index, const int row, const int col) const;
 
+	vector<string> getBtsBoard() const;
+
+	void outputToFile() const;
+
 private:
 	sf::Vector2i m_location;			//	upper-left dot of board (is constant)
 	int m_rowNum, m_colNum;				//	number of rows and cols

@@ -1,9 +1,14 @@
 #include "Board.h"
 #include <iostream>
+#include <fstream>
 
 using std::cin;
 using std::cout;
 using std::endl;
+using std::ifstream;
+using std::ofstream;
+using std::getline;
+using std::ios;
 
  int space = 70;
 const int UPPER_LEFT_X = 140;
@@ -11,21 +16,91 @@ const int UPPER_LEFT_Y = 140;
 
 
 Board::Board(const int row_num, const int col_num, vector <DisplayObject*> objects)
-	:m_rowNum(row_num), m_colNum(col_num), m_location(140, 140), m_objects(objects)
+	:m_rowNum(0), m_colNum(0), m_location(140, 140), m_objects(objects)
 {
 
+    ifstream inputFile;
+
+    inputFile.open("Board1.txt", ios::in);
+    bool b = inputFile.is_open();
+
     string row;
+    vector<string> temp;
 
-    for (int i = 0; i < row_num; i++)
+    if (!inputFile.is_open())
     {
-        row.clear();
+        cout << "how many rows?" << endl;
+        cin >> m_rowNum;
+        cout << "how many cols?" << endl;
+        cin >> m_colNum;
 
-        for (int k = 0; k < col_num; k++)
-            row.push_back(-1);
 
-        m_btsBoard.push_back(row);
+        for (int i = 0; i < m_rowNum; i++)
+        {
+            row.clear();
+
+            for (int k = 0; k < m_colNum; k++)
+                row.push_back(' ');
+
+            m_btsBoard.push_back(row);
+        }
     }
-    
+
+    else
+    {
+        inputFile >> m_rowNum;      //input number of row and col
+        inputFile >> m_colNum;
+        inputFile.ignore();
+
+//          save all relevant rows (without top bottom borders) to a temp array
+        getline(inputFile, row);                
+        for (int i = 0; i < m_rowNum; i++)
+        {
+            getline(inputFile, row);
+            temp.push_back(row);
+            row.clear();
+        }
+
+        int inputFileColIndex;
+
+//          translate the temp array to the member array
+        for (int currRow = 0; currRow < m_rowNum; currRow++)    
+        {
+            row.clear();
+
+            for (int currCol = 0; currCol < m_colNum; currCol++)
+            {
+                inputFileColIndex = 1 + 2 * currCol;        //jumps in 2, starting from 1
+                row.push_back(temp[currRow][inputFileColIndex]);
+            }
+
+            m_btsBoard.push_back(row);
+        }
+    }
+}
+
+void Board::outputToFile() const
+{
+    ofstream outputFile;
+
+    if (!outputFile.is_open())
+    {
+        string verticalBorder;
+        for (int i = 0; i < 11; i++)
+        {
+            verticalBorder.push_back('-');
+        }
+
+        outputFile.open("Board.txt");
+
+        outputFile << (verticalBorder);
+        outputFile << (verticalBorder);
+    }
+}
+
+vector<string> Board::getBtsBoard() const
+{
+    return m_btsBoard;
 }
 
 void Board::setObjects(const vector <DisplayObject*> objects)
